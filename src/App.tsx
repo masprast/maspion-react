@@ -14,6 +14,7 @@ export interface GitHubRepo {
   name: string;
   description: string;
   stargazers_count: number;
+  html_url: string;
 }
 
 function App() {
@@ -31,6 +32,15 @@ function App() {
     setSearchQuery(query);
     setHasSearched(true);
 
+    const cacheKey = `github_search_${query.toLowerCase()}`;
+    const cachedData = sessionStorage.getItem(cacheKey);
+
+    if (cachedData) {
+      setUsers(JSON.parse(cachedData));
+      setLoading(false);
+      return;
+    }
+
     try {
       // Fetch up to 5 users based on query
       const response = await fetch(`https://api.github.com/search/users?q=${encodeURIComponent(query)}&per_page=5`);
@@ -40,7 +50,9 @@ function App() {
       }
 
       const data = await response.json();
-      setUsers(data.items || []);
+      const usersData = data.items || [];
+      setUsers(usersData);
+      sessionStorage.setItem(cacheKey, JSON.stringify(usersData));
     } catch (err: any) {
       setError(err.message || 'Terjadi kesalahan');
     } finally {
