@@ -9,7 +9,7 @@ interface UserListProps {
 
 const UserList: React.FC<UserListProps> = ({ users, loading }) => {
   if (loading) {
-    return <div className="loading-state">Loading users...</div>;
+    return <div className="text-center p-6 text-[#666]">Loading users...</div>;
   }
 
   if (users.length === 0) {
@@ -17,7 +17,7 @@ const UserList: React.FC<UserListProps> = ({ users, loading }) => {
   }
 
   return (
-    <div className="user-list">
+    <div className="flex flex-col gap-2">
       {users.map((user) => (
         <UserAccordion key={user.id} user={user} />
       ))}

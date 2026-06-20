@@ -15,6 +15,9 @@ export interface GitHubRepo {
   description: string;
   stargazers_count: number;
   html_url: string;
+  owner: {
+    login: string;
+  };
 }
 
 function App() {
@@ -25,7 +28,13 @@ function App() {
   const [hasSearched, setHasSearched] = useState(false);
 
   const handleSearch = async (query: string) => {
-    if (!query.trim()) return;
+    if (!query.trim()) {
+      setUsers([]);
+      setSearchQuery('');
+      setHasSearched(false);
+      setError(null);
+      return;
+    }
 
     setLoading(true);
     setError(null);
@@ -61,18 +70,18 @@ function App() {
   };
 
   return (
-    <div className="app-container">
-      <main className="main-content">
+    <div className="max-w-[480px] mx-auto px-4 py-6 min-h-screen text-[#333] font-sans">
+      <main>
         <SearchBar onSearch={handleSearch} isLoading={loading} />
 
         {error && (
-          <div className="error-message">
+          <div className="text-[#d32f2f] mb-4 text-sm">
             {error}
           </div>
         )}
 
         {hasSearched && !loading && !error && (
-          <p className="search-result-text">
+          <p className="text-[#666] text-sm mb-4">
             Showing users for "{searchQuery}"
           </p>
         )}

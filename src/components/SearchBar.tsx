@@ -14,16 +14,26 @@ const SearchBar: React.FC<SearchBarProps> = ({ onSearch, isLoading }) => {
   };
 
   return (
-    <form className="search-bar" onSubmit={handleSubmit}>
+    <form className="flex flex-col gap-4 mb-6" onSubmit={handleSubmit}>
       <input
         type="text"
-        className="search-input"
+        className="w-full px-4 py-3 text-base border border-[#ccc] rounded bg-white focus:outline-none focus:border-[#4a90e2] focus:ring-2 focus:ring-[#4a90e2]/20 transition-all"
         placeholder="Enter username"
         value={query}
-        onChange={(e) => setQuery(e.target.value)}
+        onChange={(e) => {
+          const val = e.target.value;
+          setQuery(val);
+          if (val.trim() === '') {
+            onSearch('');
+          }
+        }}
         disabled={isLoading}
       />
-      <button type="submit" className="search-button" disabled={isLoading || !query.trim()}>
+      <button 
+        type="submit" 
+        className="w-full px-4 py-3 text-base font-medium text-white bg-[#4a90e2] rounded hover:bg-[#357abd] active:translate-y-[1px] disabled:opacity-70 disabled:cursor-not-allowed transition-all" 
+        disabled={isLoading || !query.trim()}
+      >
         {isLoading ? 'Searching...' : 'Search'}
       </button>
     </form>
