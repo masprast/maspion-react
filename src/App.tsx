@@ -1,6 +1,8 @@
 import { useState } from 'react';
 import SearchBar from './components/SearchBar';
 import UserList from './components/UserList';
+import RateLimitFooter from './components/RateLimitFooter';
+import { githubFetch } from './utils/githubApi';
 import './index.css';
 
 export interface GitHubUser {
@@ -52,7 +54,7 @@ function App() {
 
     try {
       // Fetch up to 5 users based on query
-      const response = await fetch(`https://api.github.com/search/users?q=${encodeURIComponent(query)}&per_page=5`);
+      const response = await githubFetch(`https://api.github.com/search/users?q=${encodeURIComponent(query)}&per_page=5`);
 
       if (!response.ok) {
         throw new Error('Gagal mengambil data dari GitHub API. Mungkin terkena rate limit.');
@@ -88,6 +90,7 @@ function App() {
 
         <UserList users={users} loading={loading} />
       </main>
+      <RateLimitFooter />
     </div>
   );
 }

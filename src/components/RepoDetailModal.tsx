@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { GitHubRepo } from '../App';
+import { githubFetch } from '../utils/githubApi';
 
 interface RepoDetailModalProps {
   repo: GitHubRepo;
@@ -35,7 +36,7 @@ const RepoDetailModal: React.FC<RepoDetailModalProps> = ({ repo, onClose }) => {
 
         const [contributorsRes, contentsRes, readmeRes, languagesRes] = await Promise.allSettled([
           (async () => {
-            const res = await fetch(`${url}/contributors?per_page=1&anon=1`);
+            const res = await githubFetch(`${url}/contributors?per_page=1&anon=1`);
             if (!res.ok) return 0;
 
             const linkHeader = res.headers.get('link');
@@ -49,11 +50,11 @@ const RepoDetailModal: React.FC<RepoDetailModalProps> = ({ repo, onClose }) => {
             const data = await res.json();
             return data.length;
           })(),
-          fetch(`${url}/contents`),
-          fetch(`${url}/readme`, {
+          githubFetch(`${url}/contents`),
+          githubFetch(`${url}/readme`, {
             headers: { Accept: 'application/vnd.github.html' },
           }),
-          fetch(`${url}/languages`),
+          githubFetch(`${url}/languages`),
         ]);
 
         let contributorsCount: number | string = 0;

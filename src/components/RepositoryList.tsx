@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { GitHubRepo } from '../App';
 import RepoDetailModal from './RepoDetailModal';
+import { githubFetch } from '../utils/githubApi';
 
 interface RepositoryListProps {
   username: string;
@@ -30,7 +31,7 @@ const RepositoryList: React.FC<RepositoryListProps> = ({ username }) => {
         setLoading(true);
         // Using per_page=100 as an upper bound. 
         // GitHub API defaults to 30, max is 100.
-        const response = await fetch(`https://api.github.com/users/${username}/repos?per_page=100&sort=updated`);
+        const response = await githubFetch(`https://api.github.com/users/${username}/repos?per_page=100&sort=updated`);
 
         if (!response.ok) {
           throw new Error('Failed to fetch repositories');
