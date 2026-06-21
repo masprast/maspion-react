@@ -49,7 +49,9 @@ Verifikasi fitur-fitur utama aplikasi di *environment* lokal:
 5. Perhatikan *footer* yang secara otomatis meng-*update* sisa *limit* API yang di-*parsing* dari *response headers* GitHub.
 
 ## 🎥 Demo
+Demo dari web app ini dapat dicoba di [**maspion-react.vercel.app**](https://maspion-react.vercel.app/)
 
+Berikut adalah video demo dari web app ini:
 <video src="./public/google_screen_recording_2026-06-20T18-18_32.686Z.webm" controls width="100%">
   Browser tidak mendukung tag video.
 </video>
