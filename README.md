@@ -52,3 +52,5 @@ Verifikasi fitur-fitur utama aplikasi di *environment* lokal:
 Demo dari web app ini dapat dicoba di [**maspion-react.vercel.app**](https://maspion-react.vercel.app/)
 
 Berikut adalah video demo dari web app ini:
+
+[google_screen_recording_2026-06-20T18-18_32.686Z.webm](https://github.com/user-attachments/assets/1a880d3c-b5cd-415d-a9ab-a4bb33e60ed3)
