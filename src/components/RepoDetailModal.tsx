@@ -97,10 +97,8 @@ const RepoDetailModal: React.FC<RepoDetailModalProps> = ({ repo, onClose }) => {
     <div className="fixed inset-0 z-[1000] flex items-center justify-center sm:bg-black/60 sm:p-6 backdrop-blur-sm transition-opacity">
       <div className="w-full h-full sm:h-auto sm:max-h-[90vh] sm:max-w-2xl bg-[#f5f5f5] sm:rounded-xl flex flex-col overflow-hidden animate-[slideIn_0.3s_cubic-bezier(0.16,1,0.3,1)_forwards] sm:animate-none sm:shadow-2xl">
         <div className="flex items-center p-4 bg-[#4a90e2] text-white shadow-sm shrink-0">
-          <button className="flex items-center justify-center w-8 h-8 sm:w-auto sm:px-3 sm:py-1.5 sm:bg-white/20 sm:hover:bg-white/30 sm:rounded-md bg-transparent border-none text-white text-base font-medium cursor-pointer p-0 mr-4 transition-colors" onClick={onClose}>
-            <i className="fas fa-arrow-left sm:hidden"></i>
-            <i className="fas fa-times hidden sm:inline-block"></i>
-            <span className="hidden sm:inline-block ml-2">Tutup</span>
+          <button className="flex items-center justify-center w-8 h-8 rounded-full bg-transparent hover:bg-white/20 text-white cursor-pointer mr-3 transition-colors" onClick={onClose} aria-label="Tutup" title="Tutup">
+            <i className="fas fa-arrow-left text-lg"></i>
           </button>
           <h2 className="text-lg font-semibold m-0 overflow-hidden text-ellipsis whitespace-nowrap">{repo.name}</h2>
         </div>
