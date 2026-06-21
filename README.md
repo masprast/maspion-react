@@ -35,7 +35,7 @@ Web app berbasis React untuk mencari profil GitHub dan mengeksplorasi repositori
    ```bash
    npm install
    ```
-3. *Start development server* dengan HMR:
+3. *Start development server*:
    ```bash
    npm run dev
    ```
