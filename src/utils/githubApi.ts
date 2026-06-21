@@ -1,6 +1,6 @@
 export const githubFetch = async (input: RequestInfo | URL, init?: RequestInit): Promise<Response> => {
   const response = await fetch(input, init);
-  
+
   const limit = response.headers.get('x-ratelimit-limit');
   const remaining = response.headers.get('x-ratelimit-remaining');
   const used = response.headers.get('x-ratelimit-used');
@@ -11,6 +11,6 @@ export const githubFetch = async (input: RequestInfo | URL, init?: RequestInit):
       detail: { limit, remaining, used, reset }
     }));
   }
-  
+
   return response;
 };
